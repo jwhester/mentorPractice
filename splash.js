@@ -1,4 +1,3 @@
-
 const quotes = [
     "<p>“A mentor is someone who allows you to see the hope inside yourself.”<br> — Oprah Winfrey</p>",
     "<p>“Our chief want in life is somebody who will make us do what we can.”<br> — Ralph Waldo Emerson</p>",
@@ -17,6 +16,12 @@ $(document).ready(function () {
     $("#quotes").html(quotes[randomQuote])
 });
 $(document).on("click", ".signUp", function () {
+    $('.mentorTitle').each(function () {
+        let mentorTitle = $(this);
+            setTimeout(function () {
+                mentorTitle.css("color", "#FEDD00");
+            }, mentorTitle.index() * 50)
+    });
     $("#light").css("visibility", "visible");
     $("#men").css("color","#FDDD00").addClass('uppercase');
     setTimeout(function(){
@@ -24,28 +29,6 @@ $(document).on("click", ".signUp", function () {
     },500);
 });
 
-
-$("#right").html(
-  "<form action=\"/register\" method=\"post\">\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label for=\"username\">Username</label>\n" +
-    "            <input id=\"username\" name=\"username\" class=\"form-control\" type=\"text\" value=\"\">\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label for=\"email\">Email</label>\n" +
-    "            <input id=\"email\" name=\"email\" class=\"form-control\" type=\"text\" value=\"\">\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label for=\"password\">Password</label>\n" +
-    "            <input id=\"password\" name=\"password\" class=\"form-control\" type=\"password\">\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label for=\"confirm_password\">Confirm Password</label>\n" +
-    "            <input id=\"confirm_password\" name=\"confirm_password\" class=\"form-control\" type=\"password\">\n" +
-    "        </div>\n" +
-    "        <input type=\"submit\" class=\"btn btn-primary btn-block\">\n" +
-    "    </form>"
-);
 
 
 const { styler, timeline, listen, easing } = window.popmotion;
@@ -96,7 +79,7 @@ const openModal = () => {
         '-200',
         [...modalSections.map((s, i) => tweenUp(sectionLabels[i], 300, 50)), 50]
     ]).start(setStylers);
-}
+};
 
 const cancelModal = () => {
     timeline([
@@ -113,7 +96,7 @@ const cancelModal = () => {
         update: setStylers,
         complete: hideContainers
     });
-}
+};
 
 const okModal = () => {
     timeline([
@@ -130,8 +113,9 @@ const okModal = () => {
         update: setStylers,
         complete: hideContainers
     });
-}
+};
 
 listen(openModalButton, 'click').start(openModal);
 listen(cancelModalButton, 'click').start(cancelModal);
 listen(okModalButton, 'click').start(okModal);
+
